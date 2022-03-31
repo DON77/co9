@@ -32,13 +32,11 @@ class SignUpForm extends StatelessWidget {
                   passwordController: passwordController,
                 ),
                 const SizedBox(height: 20),
-                OutlinedButton(
+                ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.purple),
-                      // shape: new OutlinedBorder(
-                      //   BorderSide side = BorderSide(border.all);
-                      // ),
+                    backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFD45130)),
                   ),
+
 
                   onPressed: () {
                     var _validated = _formKey.currentState?.validate();

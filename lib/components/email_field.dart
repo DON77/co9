@@ -5,25 +5,37 @@ class EmailField extends StatelessWidget {
 
   final TextEditingController? emailController;
 
-  EmailField({Key? key, this.emailController}):super(key: key);
+  const EmailField({Key? key, this.emailController}):super(key: key);
+  //Color(0xffc25c7e);
 
-  final InputDecoration decoratedInput = InputDecoration(
+  final InputDecoration decoratedInput = const InputDecoration(
     labelText: 'Email*',
     hintText: 'Enter your email',
-    fillColor: Colors.grey,
-    border:  OutlineInputBorder(
-      borderRadius: BorderRadius.circular(25.0),
+    labelStyle: TextStyle(color:  Color(0xff88BDCD)),
+    iconColor: Color(0xffc25c7e),
+    //fillColor: Color(0xffc25c7e),
+    enabledBorder:UnderlineInputBorder(
+      borderSide: BorderSide(color: Color(0xff88BDCD)),
+      borderRadius: BorderRadius.only(),
+
+    ),
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: Color(0xFFD45130)),
+      borderRadius: BorderRadius.only(),
     ),
   );
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: const Color(0xff88BDCD),
+
       controller: emailController,
-      textAlign: TextAlign.center,
+      //textAlign: TextAlign.center,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       decoration: decoratedInput,
+
       validator: (value) {
         String? _validatedEmail = validateEmail(value!);
         return _validatedEmail;

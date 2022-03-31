@@ -1,4 +1,3 @@
-
 import "package:flutter/material.dart" ;
 import 'package:co9/pages/signup_form.dart';
 class Co9App extends StatelessWidget {
@@ -10,7 +9,7 @@ class Co9App extends StatelessWidget {
     return MaterialApp(
       title: 'co9',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.deepPurple,//,
       ),
       home: const MyHomePage(
         title: 'Բարի գալուստ Քոworkerներ...',
@@ -29,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool _shown = false;
-
+  Color magenta =const Color(0xffc25c7e);
   void _openModal() {
     setState(() {
       _shown = !_shown;
@@ -41,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor:magenta,
       ),
       body: Center(
         child: Column(
@@ -55,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _openModal,
         tooltip: 'Register',
+        backgroundColor: magenta,
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
