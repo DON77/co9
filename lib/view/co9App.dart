@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import "package:flutter/material.dart" ;
 import 'package:co9/pages/signup_form.dart';
 class Co9App extends StatelessWidget {
@@ -12,7 +14,8 @@ class Co9App extends StatelessWidget {
         primarySwatch: Colors.deepPurple,//,
       ),
       home: const MyHomePage(
-        title: 'Բարի գալուստ Քոworkerներ...',
+        title: 'Բարի գալուստ \n Co9...',
+
       ),
     );
   }
@@ -29,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool _shown = false;
   Color magenta =const Color(0xffc25c7e);
+  Color orange = const Color(0xffF3996C);
   void _openModal() {
     setState(() {
       _shown = !_shown;
@@ -39,16 +43,26 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor:magenta,
+        leading: Image.asset('logo.png'),
+        title: Text(widget.title,textAlign: TextAlign.center,),
+        backgroundColor:orange,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset('co9.png'),
-            _shown ? Center(child: SignUpForm()) : const SizedBox(),
-          ],
+
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/background.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _shown ? Center(child: SignUpForm()) : const SizedBox(),
+              Image.asset('co9.png'),
+            ],
+          ),
         ),
       ),
 
@@ -57,7 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Register',
         backgroundColor: magenta,
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      //bottomNavigationBar: Buttom,// This trailing comma makes auto-formatting nicer for build methods.
     );
 
   }
