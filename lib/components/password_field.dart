@@ -1,7 +1,5 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
 import 'package:co9/helpers/password_validator.dart';
+import 'package:flutter/material.dart';
 
 class PasswordField extends StatefulWidget {
   @override
@@ -9,13 +7,13 @@ class PasswordField extends StatefulWidget {
 
   final TextEditingController? passwordController;
 
-  const PasswordField({Key? key,this.passwordController}):super(key:key);
+  const PasswordField({Key? key, this.passwordController}) : super(key: key);
 }
 
 class _PasswordFieldState extends State<PasswordField> {
   bool _passwordVisible = false;
-  Color magenta =const Color(0xffc25c7e);
-  Color blue = const Color(0xff88BDCD);
+  Color magenta = const Color(0xffc25c7e);
+  Color blue = const Color(0xffffffff); //Color(0xff88BDCD);
   @override
   void initState() {
     super.initState();
@@ -50,7 +48,7 @@ class _PasswordFieldState extends State<PasswordField> {
         suffixIcon: IconButton(
           icon: Icon(
             _passwordVisible ? Icons.visibility : Icons.visibility_off,
-            color: blue,//Theme.of(context).primaryColorDark,
+            color: blue, //Theme.of(context).primaryColorDark,
           ),
           onPressed: () {
             setState(() {
