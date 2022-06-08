@@ -22,10 +22,10 @@ class _AboutCardState extends State<AboutCard> {
         padding: const EdgeInsets.fromLTRB(12, 20, 12, 10),
         child: RichText(
           text: TextSpan(children: <TextSpan>[
-            TextSpan(
-                text: 'Մեր մասին \n',
+            const TextSpan(
+                text: 'Մեր մասին \n\n',
                 style: TextStyle(
-                  color: _blue,
+                  color: Colors.white, //_blue,
                   fontSize: 18,
                   letterSpacing: 10.0,
                 )),

@@ -14,6 +14,7 @@ class Co9App extends StatelessWidget {
       title: 'co9',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple, //,
+        backgroundColor: Colors.black,
         // fontFamily: ArialAm),
       ),
       home: const MyHomePage(
@@ -34,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool _shown = false;
   int _index = 0;
+  double _opacity = 100;
   List<Widget> items = [
     const AboutCard(),
     const Announce(),
@@ -52,7 +54,22 @@ class _MyHomePageState extends State<MyHomePage> {
     _slideUp();
   }
 
+  void _shutTheStreetDown() {
+    if (_opacity > 0) {
+      setState(() {
+        _opacity = 0;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // _shutTheStreetDown();
+    super.initState();
+  }
+
   void _slideUp() {
+    _shutTheStreetDown();
     setState(() {
       if (_index < items.length - 1) {
         _index++;
@@ -72,6 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void replaceBackground() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,21 +103,41 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.black26,
       ),
       body: Center(
-        child: Container(
-          width: 900,
-          height: 1080.0,
-          padding: const EdgeInsets.all(10.0),
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("background.gif"),
-              fit: BoxFit.fill,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          switchInCurve: Curves.easeOut,
+          child: Container(
+            width: 1024,
+            height: 1080.0,
+            padding: const EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: const Color(0x34344FFF),
+              image: DecorationImage(
+                image: const AssetImage("background.gif"),
+                fit: BoxFit.fill,
+                opacity: _opacity,
+              ),
+            ),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    child: const Icon(Icons.navigate_before),
+                    onPressed: _slideDown,
+                  ),
+                  AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 1200),
+                      switchInCurve: Curves.fastOutSlowIn,
+                      child: items[_index]),
+                  ElevatedButton(
+                    child: const Icon(Icons.navigate_next),
+                    onPressed: _slideUp,
+                  ),
+                ],
+              ),
             ),
           ),
-          child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 1200),
-              switchInCurve: Curves.bounceInOut,
-              switchOutCurve: Curves.easeInOutSine,
-              child: items[_index]),
         ),
       ),
       floatingActionButton: FloatingActionButton(
